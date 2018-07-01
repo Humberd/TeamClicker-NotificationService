@@ -30,4 +30,4 @@ firebase-config.json
 *.der
 *.pem
 
-#mail_templates/out/*.html
+src/main/resources/mail_templates/html/*.html
