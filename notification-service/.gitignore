@@ -29,3 +29,5 @@ firebase-config.json
 *.key.pub
 *.der
 *.pem
+
+#mail_templates/out/*.html

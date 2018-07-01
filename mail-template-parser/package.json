@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mjml ../notification-service/src/main/resources/mail_templates/*.mjml -o ../notification-service/otification-service/src/main/resources/mail_templates/dist/"
   },
   "author": "",
   "license": "ISC",

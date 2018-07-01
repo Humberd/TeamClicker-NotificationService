@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TeamClicker-NotificationService.iml" filepath="$PROJECT_DIR$/.idea/TeamClicker-NotificationService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notification-service/tc-notification-service.iml" filepath="$PROJECT_DIR$/notification-service/tc-notification-service.iml" />
     </modules>
   </component>
 </project>
