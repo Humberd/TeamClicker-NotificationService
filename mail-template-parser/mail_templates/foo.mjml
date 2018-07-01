@@ -1,0 +1,28 @@
+<mjml>
+    <mj-body background-color="#d7dde5">
+        <mj-section full-width="full-width">
+            <mj-column width="66.66666666666666%" vertical-align="middle">
+                <mj-text align="left" font-size="11px" padding-bottom="0px" padding-top="0">
+                    <span style="font-size: 11px">[[HEADLINEdffddd]]</span>
+                </mj-text>
+            </mj-column>
+            <mj-column width="33.33333333333333%" vertical-align="middle">
+                <mj-text align="right" font-size="11px" padding-bottom="0px" padding-top="0">
+                    <span style="font-size: 11px">
+                        <a href="https://mjml.io" style="text-decoration: none; color: inherit;">[[PERMALINK_LABEL]]</a>
+                    </span>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+        <mj-section full-width="full-width">
+            <mj-column width="100%" vertical-align="middle">
+                <mj-text align="center" font-size="11px" padding-bottom="0px" padding-top="0">
+                    <p style="font-size: 11px">[[DELIVEdsdRs_dsdsddsddIdsdsdsNFO]]</p>
+                </mj-text>
+                <mj-text align="center" font-size="11px" padding-bottom="0px" padding-top="0">
+                    <p style="font-size: 11px">[[POSTAL_ADDRESS]]</p>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>
