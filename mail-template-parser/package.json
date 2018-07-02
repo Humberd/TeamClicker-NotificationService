@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-prod": "mjml ./mail_templates/*.mjml -o ./mail_templates/html/ --config.minify true --config.beautify false && node copy.js",
+    "build": "mjml ./mail_templates/*.mjml -o ./mail_templates/html/ --config.minify true --config.beautify false",
+    "buildCopy": "npm run build && node copy.js",
     "watch": "concurrently --kill-others \"npm run live-reload-server\" \"npm run mjml-watch\"",
     "live-reload-server": "live-server --port=7786 ./mail_templates/html",
     "mjml-watch": "node index.js"
