@@ -18,22 +18,48 @@ class MailServiceImpl(
     private val senderEmail: String
 ) : MailService {
 
-    fun readFile(fileName: String) = resourceLoader.getResource("${MAIL_TEMPLATES_PATH}/$fileName.html").file.readText()
+    val passwordResetEvent = MailEvent(
+        templateFileName = "password_reset",
+        mailTitle = "Reset your Password"
+    )
 
     fun send(data: PasswordResetEmailKDTO) {
-        val template = readFile("password_reset")
-        val parsedTemplate = mailTemplateParser.parseTemplate(template)
-            .replace("password_reset_link", "https://google.com/")
-            .build()
+        passwordResetEvent.send(
+            templateVars = mapOf(
+                "password_reset_link" to "https://google.com/"
+            ),
+            recipent = data.email
+        )
+    }
 
-        val message = MimeMessageHelper(mailSender.createMimeMessage(), false, Charsets.UTF_8.displayName()).let {
-            it.setTo(data.email)
-            it.setFrom(InternetAddress(senderEmail, "TeamClicker"))
-            it.setSubject("Reset your Password")
-            it.setText(parsedTemplate, true)
-            it.mimeMessage
+    inner class MailEvent(
+        templateFileName: String,
+        private val mailTitle: String
+    ) {
+        private val template: String
+
+        init {
+            template = readFile(templateFileName)
         }
 
-        mailSender.send(message)
+        fun send(templateVars: Map<String, Any>, recipent: String) {
+            val parsedTemplate = mailTemplateParser.parseTemplate(template)
+                .replace(templateVars)
+                .build()
+
+            val message = MimeMessageHelper(mailSender.createMimeMessage(), false, Charsets.UTF_8.displayName()).let {
+                it.setTo(recipent)
+                it.setFrom(InternetAddress(senderEmail, "TeamClicker"))
+                it.setSubject(mailTitle)
+                it.setText(parsedTemplate, true)
+                it.mimeMessage
+            }
+
+            mailSender.send(message)
+        }
+
+
+        private fun readFile(fileName: String) =
+            resourceLoader.getResource("${MAIL_TEMPLATES_PATH}/$fileName.html").file.readText()
     }
 }

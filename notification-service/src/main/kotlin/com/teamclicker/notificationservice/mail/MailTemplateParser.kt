@@ -2,6 +2,7 @@ package com.teamclicker.notificationservice.mail
 
 import com.teamclicker.notificationservice.Constants.MAIL_TEMPLATE_VARIABLE_END
 import com.teamclicker.notificationservice.Constants.MAIL_TEMPLATE_VARIABLE_START
+import mu.KLogging
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,6 +21,14 @@ class MailTemplateParser {
 
         fun replace(variableName: String, value: Number): MailTemplateBuilder {
             return replace(variableName, value.toString())
+        }
+
+        fun replace(map: Map<String, Any>): MailTemplateBuilder {
+            for ((key, value) in map) {
+                replace(key, value.toString())
+            }
+
+            return this
         }
 
         fun build(): String {
