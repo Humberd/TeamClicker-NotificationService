@@ -34,14 +34,16 @@ class MailTemplateParser {
         fun build(): String {
             var currentTemplate = template
             for ((varName, value) in variables) {
-                currentTemplate =
-                        currentTemplate.replace(
-                            "${MAIL_TEMPLATE_VARIABLE_START}$varName${MAIL_TEMPLATE_VARIABLE_END}",
-                            value
-                        )
+                val parsedVar = "$MAIL_TEMPLATE_VARIABLE_START$varName$MAIL_TEMPLATE_VARIABLE_END"
+                if (currentTemplate.indexOf(parsedVar) == -1) {
+                    logger.warn { "Variable $parsedVar does not exist in a template" }
+                }
+                currentTemplate = currentTemplate.replace(parsedVar, value)
             }
 
             return currentTemplate
         }
     }
+
+    companion object: KLogging()
 }
