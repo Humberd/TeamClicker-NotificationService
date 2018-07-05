@@ -1,5 +1,7 @@
 package com.teamclicker.notificationservice.mail
 
-interface MailService {
+import com.teamclicker.notificationservice.kafka.dto.PasswordResetEmailKDTO
 
+interface MailService {
+    fun send(data: PasswordResetEmailKDTO)
 }

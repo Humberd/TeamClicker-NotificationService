@@ -23,7 +23,7 @@ class MailServiceImpl(
         mailTitle = "Reset your Password"
     )
 
-    fun send(data: PasswordResetEmailKDTO) {
+    override fun send(data: PasswordResetEmailKDTO) {
         passwordResetEvent.send(
             templateVars = mapOf(
                 "password_reset_link" to "https://google.com/"
