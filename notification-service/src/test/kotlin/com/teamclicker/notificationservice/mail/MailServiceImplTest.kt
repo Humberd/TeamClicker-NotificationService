@@ -15,10 +15,10 @@ internal class MailServiceImplTest {
 
     @Test
     fun `should foo`() {
-        mailServiceImpl.send(
-            PasswordResetEmailKDTO(
-                "humberd2@gmail.com", "abcd1234"
-            )
-        )
+//        mailServiceImpl.send(
+//            PasswordResetEmailKDTO(
+//                "humberd2@gmail.com", "abcd1234"
+//            )
+//        )
     }
 }

@@ -12,13 +12,9 @@ import org.springframework.stereotype.Service
 class MailListener(
     val mailService: MailService
 ) {
-    init {
-        logger.info { "created" }
-    }
-
     @KafkaListener(topics = [PASSWORD_RESET_EMAIL_TOPIC])
     fun passwordReset(@Payload data: PasswordResetEmailKDTO) {
-        logger.info { "Received $data" }
+        logger.info { "Receiving ${data.javaClass.simpleName}" }
         mailService.send(data)
     }
 
