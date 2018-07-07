@@ -45,5 +45,5 @@ class MailTemplateParser {
         }
     }
 
-    companion object: KLogging()
+    companion object : KLogging()
 }

@@ -39,5 +39,5 @@ internal class MailListenerTest {
 
     }
 
-    companion object: KLogging()
+    companion object : KLogging()
 }

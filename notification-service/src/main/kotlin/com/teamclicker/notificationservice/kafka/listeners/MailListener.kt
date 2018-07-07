@@ -18,5 +18,5 @@ class MailListener(
         mailService.send(data)
     }
 
-    companion object: KLogging()
+    companion object : KLogging()
 }
