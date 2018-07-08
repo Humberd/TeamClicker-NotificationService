@@ -4,7 +4,10 @@ import com.teamclicker.notificationservice.kafka.KafkaTopic
 import com.teamclicker.notificationservice.kafka.dto.PasswordResetEmailKDTO
 import com.teamclicker.notificationservice.mail.MailService
 import com.teamclicker.notificationservice.testConfig.extensions.waitForCall
+import com.teamclicker.notificationservice.testConfig.kafka.KafkaMockConsumer
 import mu.KLogging
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
@@ -28,6 +31,19 @@ internal class MailListenerTest {
     @Autowired
     lateinit var template: KafkaTemplate<String, Any>
 
+    @Autowired
+    lateinit var kafkaMockConsumer: KafkaMockConsumer
+
+    @BeforeAll
+    fun setUp() {
+        kafkaMockConsumer.stopListening()
+    }
+
+    @AfterAll
+    fun afterAll() {
+        kafkaMockConsumer.startListening()
+    }
+
     @Test
     fun `should send passwordReset email on passwordReset message`() {
         val data = PasswordResetEmailKDTO("admin@admin.com", "hello world")
@@ -35,7 +51,7 @@ internal class MailListenerTest {
         logger.info { "Sending ${data.javaClass.simpleName}" }
         val latch = waitForCall(mailService.send(data))
 
-        assert(latch.await(1, TimeUnit.SECONDS))
+        assert(latch.await(5, TimeUnit.SECONDS))
 
     }
 
